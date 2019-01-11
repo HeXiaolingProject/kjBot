@@ -30,7 +30,7 @@ function praseMod($mod){
     if($mod & 4096)$list['SO']=1;
     if($mod & 8192)$list['AP']=1;
     if($mod & 16384){unset($list['SD']);$list['PF']=1;}
-    
+
     return $list;
 }
 
@@ -44,7 +44,7 @@ function ACCof($m){
 
 function getBG($map){
     try{
-        $bg = Image::make('https://bloodcat.com/osu/i/'.$map)->resize(1280, 720);
+        $bg = Image::make('https://bloodcat.com/osu/i/'.$map)->fit(1280, 720);
     }catch(\Exception $e){
         return Image::make(__DIR__.'/bg.jpg')->resize(1280, 720); //Fallback 背景
     }
@@ -84,7 +84,7 @@ function getModImages($list){
 function getModImage($list){
     $modImages = getModImages($list);
     $countImg = count($modImages);
-    
+
     if($countImg === 0){
         return Image::canvas(1,1);
     }
